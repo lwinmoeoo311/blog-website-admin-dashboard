@@ -1,7 +1,9 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-  </nav>
+  <!-- <nav>
+    <router-link>Home</router-link>
+    <router-link>Home</router-link>
+    <router-link>C</router-link>
+  </nav> -->
   <router-view />
 </template>
 
@@ -10,10 +12,11 @@
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  /* text-align: center; */
   color: #2c3e50;
 }
 
+/* 
 nav {
   padding: 30px;
 }
@@ -25,5 +28,5 @@ nav a {
 
 nav a.router-link-exact-active {
   color: #42b983;
-}
+} */
 </style>

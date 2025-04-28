@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import UserForm from '@/views/UserForm.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -7,6 +8,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'home',
     component: HomeView
   },
+  {
+    path: '/user-form',
+    name: 'user-form',
+    component: UserForm
+  }
   // {
   //   path: '/about',
   //   name: 'about',
