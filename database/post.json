@@ -1,0 +1,28 @@
+{
+    "posts": [
+        {
+            "id": "1",
+            "author": "Testing 1",
+            "content": "Vivamizzle fo shizzle mah nizzle fo rizzle, mah home g-dizzle owned fo shizzle nisi pizzle pretizzle. Vivamus sizzle amet lacus. My shizz eu nisl fo shizzle my nizzle lacus auctizzle feugiat. Praesent suscipit phat ipsum. Curabitizzle izzle arcu. Vestibulizzle enim enizzle, auctizzle sed, congue eu, dignissim sheezy, fo shizzle. Shut the shizzle up vitae pede non sure posuere pharetra. Quisque gangster tortor, congue pulvinizzle, away fo shizzle my nizzle, mollizzle sit amizzle, own yo'. Shizzle my nizzle crocodizzle phat dui. Aliquam risus purizzle, fo shizzle mah nizzle fo rizzle, mah home g-dizzle consectetuer, sollicitudin izzle, consequizzle imperdizzle, hizzle. Quisque a break yo neck, yall eu mi we gonna chung vehicula. Curabitur accumsan sagittizzle ipsum. Mah nizzle rizzle morbi fizzle mammasay mammasa mamma oo sa izzle funky fresh izzle fo shizzle fames izzle turpizzle shiznit. In est. Curabitur i'm in the shizzle. Mammasay mammasa mamma oo sa erizzle felis, quis, funky fresh ac, ghetto pulvinar, nisl. Nulla stuff gravida things.",
+            "image": "",
+            "category": "tech",
+            "status": "public"
+        },
+        {
+            "id": "2",
+            "author": "Testing 2",
+            "content": "Vivamizzle fo shizzle mah nizzle fo rizzle, mah home g-dizzle owned fo shizzle nisi pizzle pretizzle. Vivamus sizzle amet lacus. My shizz eu nisl fo shizzle my nizzle lacus auctizzle feugiat. Praesent suscipit phat ipsum. Curabitizzle izzle arcu. Vestibulizzle enim enizzle, auctizzle sed, congue eu, dignissim sheezy, fo shizzle. Shut the shizzle up vitae pede non sure posuere pharetra. Quisque gangster tortor, congue pulvinizzle, away fo shizzle my nizzle, mollizzle sit amizzle, own yo'. Shizzle my nizzle crocodizzle phat dui. Aliquam risus purizzle, fo shizzle mah nizzle fo rizzle, mah home g-dizzle consectetuer, sollicitudin izzle, consequizzle imperdizzle, hizzle. Quisque a break yo neck, yall eu mi we gonna chung vehicula. Curabitur accumsan sagittizzle ipsum. Mah nizzle rizzle morbi fizzle mammasay mammasa mamma oo sa izzle funky fresh izzle fo shizzle fames izzle turpizzle shiznit. In est. Curabitur i'm in the shizzle. Mammasay mammasa mamma oo sa erizzle felis, quis, funky fresh ac, ghetto pulvinar, nisl. Nulla stuff gravida things.",
+            "image": "",
+            "category": "health",
+            "status": "public"
+        },
+        {
+            "id": "3",
+            "author": "Testing 3",
+            "content": "Vivamizzle fo shizzle mah nizzle fo rizzle, mah home g-dizzle owned fo shizzle nisi pizzle pretizzle. Vivamus sizzle amet lacus. My shizz eu nisl fo shizzle my nizzle lacus auctizzle feugiat. Praesent suscipit phat ipsum. Curabitizzle izzle arcu. Vestibulizzle enim enizzle, auctizzle sed, congue eu, dignissim sheezy, fo shizzle. Shut the shizzle up vitae pede non sure posuere pharetra. Quisque gangster tortor, congue pulvinizzle, away fo shizzle my nizzle, mollizzle sit amizzle, own yo'. Shizzle my nizzle crocodizzle phat dui. Aliquam risus purizzle, fo shizzle mah nizzle fo rizzle, mah home g-dizzle consectetuer, sollicitudin izzle, consequizzle imperdizzle, hizzle. Quisque a break yo neck, yall eu mi we gonna chung vehicula. Curabitur accumsan sagittizzle ipsum. Mah nizzle rizzle morbi fizzle mammasay mammasa mamma oo sa izzle funky fresh izzle fo shizzle fames izzle turpizzle shiznit. In est. Curabitur i'm in the shizzle. Mammasay mammasa mamma oo sa erizzle felis, quis, funky fresh ac, ghetto pulvinar, nisl. Nulla stuff gravida things.",
+            "image": "",
+            "category": "lifestyle",
+            "status": "public"
+        }
+    ]
+}
