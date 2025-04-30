@@ -59,13 +59,12 @@ import ManagePosts from '@/components/ManagePosts.vue';
 import Note from '@/components/Note.vue';
 import SavePosts from '@/components/SavePosts.vue';
 import Setting from '@/components/Setting.vue';
-import Testing from '@/components/Testing.vue';
 import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
   name: 'HomeView',
   components: {
-    Dashboard, Feed, Inbox, CreatePost, ManagePosts, SavePosts, Note, Setting, Testing
+    Dashboard, Feed, Inbox, CreatePost, ManagePosts, SavePosts, Note, Setting,
   },
   setup() {
     let accountInUse = ref(false)
