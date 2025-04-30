@@ -11,7 +11,8 @@
               class="nav-icon">Dashboard</li>
           <li class="nav-item" @click="activeComponent = 'Feed'"><img src="../assets/feed.svg" class="nav-icon"> Feed
           </li>
-          <li class="nav-item" @click="activeComponent = 'Inbox'"><img src="../assets/message.svg" class="nav-icon">Inbox
+          <li class="nav-item" @click="activeComponent = 'Inbox'"><img src="../assets/message.svg"
+              class="nav-icon">Inbox
           </li>
           <li class="nav-item" @click="activeComponent = 'CreatePost'"><img src="../assets/create-post.svg"
               class="nav-icon">Create Post</li>
@@ -19,9 +20,13 @@
               class="nav-icon">Manage Posts</li>
           <li class="nav-item" @click="activeComponent = 'SavePosts'"><img src="../assets/save-posts.svg"
               class="nav-icon">Save Post(s)</li>
-          <li class="nav-item" @click="activeComponent = 'Note'"><img src="../assets/note.svg" class="nav-icon">Note</li>
+          <li class="nav-item" @click="activeComponent = 'Note'"><img src="../assets/note.svg" class="nav-icon">Note
+          </li>
           <li class="nav-item" @click="activeComponent = 'Setting'"><img src="../assets/settings.svg"
               class="nav-icon">Setting</li>
+          <!-- <li class="nav-item" @click="activeComponent = 'Testing'"><img src="../assets/settings.svg"
+              class="nav-icon">Test
+          </li> -->
         </ul>
       </div>
     </div>
@@ -54,12 +59,13 @@ import ManagePosts from '@/components/ManagePosts.vue';
 import Note from '@/components/Note.vue';
 import SavePosts from '@/components/SavePosts.vue';
 import Setting from '@/components/Setting.vue';
-import { DefineComponent, defineComponent, ref } from 'vue';
+import Testing from '@/components/Testing.vue';
+import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
   name: 'HomeView',
   components: {
-    Dashboard, Feed, Inbox, CreatePost, ManagePosts, SavePosts, Note, Setting
+    Dashboard, Feed, Inbox, CreatePost, ManagePosts, SavePosts, Note, Setting, Testing
   },
   setup() {
     let accountInUse = ref(false)
@@ -85,6 +91,7 @@ export default defineComponent({
 .side-bar {
   background-color: rgb(123, 166, 197);
   width: 300px;
+  /* position: fixed; */
 }
 
 /* .side-bar {
