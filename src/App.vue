@@ -1,9 +1,4 @@
 <template>
-  <!-- <nav>
-    <router-link>Home</router-link>
-    <router-link>Home</router-link>
-    <router-link>C</router-link>
-  </nav> -->
   <router-view />
 </template>
 

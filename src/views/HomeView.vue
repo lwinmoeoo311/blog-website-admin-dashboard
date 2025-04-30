@@ -1,64 +1,99 @@
 <template>
-  <div class="side-bar">
-    <div class="user">
-      <img class="user-profile" src="../assets/user-profile.svg">
-      <h2 class="user-name">Lwin Moe Oo</h2>
+  <div class="homeview-container">
+    <div class="side-bar">
+      <div class="user">
+        <img class="user-profile" src="../assets/user-profile.svg">
+        <h2 class="user-name">Lwin Moe Oo</h2>
+      </div>
+      <div class="nav-items-container">
+        <ul class="nav-items">
+          <li class="nav-item" @click="activeComponent = 'Dashboard'"><img src="../assets/dashboard.svg"
+              class="nav-icon">Dashboard</li>
+          <li class="nav-item" @click="activeComponent = 'Feed'"><img src="../assets/feed.svg" class="nav-icon"> Feed
+          </li>
+          <li class="nav-item" @click="activeComponent = 'Inbox'"><img src="../assets/message.svg" class="nav-icon">Inbox
+          </li>
+          <li class="nav-item" @click="activeComponent = 'CreatePost'"><img src="../assets/create-post.svg"
+              class="nav-icon">Create Post</li>
+          <li class="nav-item" @click="activeComponent = 'ManagePosts'"><img src="../assets/manage-posts.svg"
+              class="nav-icon">Manage Posts</li>
+          <li class="nav-item" @click="activeComponent = 'SavePosts'"><img src="../assets/save-posts.svg"
+              class="nav-icon">Save Post(s)</li>
+          <li class="nav-item" @click="activeComponent = 'Note'"><img src="../assets/note.svg" class="nav-icon">Note</li>
+          <li class="nav-item" @click="activeComponent = 'Setting'"><img src="../assets/settings.svg"
+              class="nav-icon">Setting</li>
+        </ul>
+      </div>
     </div>
-    <div class="nav-items-container">
-      <ul class="nav-items">
-        <li class="nav-item"><img src="../assets/dashboard.svg" class="nav-icon">Dashboard</li>
-        <li class="nav-item"><img src="../assets/feed.svg" class="nav-icon"> Feed</li>
-        <li class="nav-item"><img src="../assets/message.svg" class="nav-icon">Inbox</li>
-        <li class="nav-item"><img src="../assets/create-post.svg" class="nav-icon">Create Post</li>
-        <li class="nav-item"><img src="../assets/manage-posts.svg" class="nav-icon">Manage Post</li>
-        <li class="nav-item"><img src="../assets/save-posts.svg" class="nav-icon">Save Post(s)</li>
-        <li class="nav-item"><img src="../assets/note.svg" class="nav-icon">Note</li>
-        <li class="nav-item"><img src="../assets/settings.svg" class="nav-icon">Setting</li>
-      </ul>
+
+    <main>
+      <component :is="activeComponent"></component>
+    </main>
+
+    <div v-if="accountInUse" class="signout">
+      <button @click="signOut">Sign Out</button>
     </div>
-  </div>
 
-  <div v-if="accountInUse" class="signout">
-    <button @click="signOut">Sign Out</button>
-  </div>
+    <div v-else class="login">
+      <router-link :to="{ name: 'user-form' }"><button>Login</button></router-link>
+    </div>
 
-  <div v-else class="login">
-    <router-link :to="{ name: 'user-form' }"><button>Login</button></router-link>
-  </div>
 
-  <div class="add-content">
-    <img class="add-content-btn" src="../assets/add-button.svg">
+    <!-- <div class="add-content">
+      <img class="add-content-btn" src="../assets/add-button.svg">
+    </div> -->
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import CreatePost from '@/components/CreatePost.vue';
+import Dashboard from '@/components/Dashboard.vue';
+import Feed from '@/components/Feed.vue';
+import Inbox from '@/components/Inbox.vue';
+import ManagePosts from '@/components/ManagePosts.vue';
+import Note from '@/components/Note.vue';
+import SavePosts from '@/components/SavePosts.vue';
+import Setting from '@/components/Setting.vue';
+import { DefineComponent, defineComponent, ref } from 'vue';
 
 export default defineComponent({
   name: 'HomeView',
   components: {
-
+    Dashboard, Feed, Inbox, CreatePost, ManagePosts, SavePosts, Note, Setting
   },
   setup() {
     let accountInUse = ref(false)
+    let activeComponent = ref("Dashboard")
 
     let signOut = () => {
       console.log("Sign Process")
     }
 
-    return { accountInUse, signOut }
+    return { accountInUse, activeComponent, signOut, }
   }
 });
 </script>
 
 <style>
+.homeview-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 100vh;
+}
+
 .side-bar {
+  background-color: rgb(123, 166, 197);
+  width: 300px;
+}
+
+/* .side-bar {
   background-color: rgb(123, 166, 197);
   position: sticky;
   float: left;
   height: 100vh;
   width: 300px;
-}
+} */
 
 .user {
   width: 100%;
@@ -110,9 +145,14 @@ export default defineComponent({
   align-items: center;
 }
 
+main {
+  margin: 100px 20px;
+  flex-grow: 2;
+}
+
 .login,
 .signout {
-  float: right;
+  /* float: right; */
   margin: 20px;
 }
 
