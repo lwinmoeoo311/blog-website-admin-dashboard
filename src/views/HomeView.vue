@@ -24,9 +24,8 @@
           </li>
           <li class="nav-item" @click="activeComponent = 'Setting'"><img src="../assets/settings.svg"
               class="nav-icon">Setting</li>
-          <!-- <li class="nav-item" @click="activeComponent = 'Testing'"><img src="../assets/settings.svg"
-              class="nav-icon">Test
-          </li> -->
+          <li class="nav-item" @click="activeComponent = 'Test'"><img src="../assets/settings.svg" class="nav-icon">Test
+          </li>
         </ul>
       </div>
     </div>
@@ -59,12 +58,13 @@ import ManagePosts from '@/components/ManagePosts.vue';
 import Note from '@/components/Note.vue';
 import SavePosts from '@/components/SavePosts.vue';
 import Setting from '@/components/Setting.vue';
+import Test from '@/components/Test.vue';
 import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
   name: 'HomeView',
   components: {
-    Dashboard, Feed, Inbox, CreatePost, ManagePosts, SavePosts, Note, Setting,
+    Dashboard, Feed, Inbox, CreatePost, ManagePosts, SavePosts, Note, Setting, Test
   },
   setup() {
     let accountInUse = ref(false)
@@ -88,9 +88,12 @@ export default defineComponent({
 }
 
 .side-bar {
+  position: fixed;
   background-color: rgb(123, 166, 197);
   width: 300px;
-  /* position: fixed; */
+  height: 100vh;
+  left: 0;
+  top: 0;
 }
 
 /* .side-bar {
@@ -152,7 +155,7 @@ export default defineComponent({
 }
 
 main {
-  margin: 100px 20px;
+  margin: 100px 320px;
   flex-grow: 2;
 }
 
@@ -160,6 +163,9 @@ main {
 .signout {
   /* float: right; */
   margin: 20px;
+  position: fixed;
+  top: 0;
+  right: 0;
 }
 
 .add-content {
