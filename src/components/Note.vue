@@ -6,20 +6,23 @@
         <div v-if="showModal" class="overlay" @click="closeModal">
             <div class="modal" @click.stop>
                 <h3>Create Note</h3>
-                <input type="text" placeholder="Header" v-bind="noteHeader">
-                <textarea placeholder="Write your note here..."></textarea>
-                <button @click="closeModal">Add</button>
+                <input type="text" placeholder="Header" v-model="noteHeader">
+                <textarea placeholder="Write your note here..." v-model="noteContent"></textarea>
+                <button @click="createNote">Add</button>
             </div>
         </div>
     </div>
-
     <div class="card-container">
-        <div class="card" v-for="note in noteCollection" :key="note.id">
+        <div class="card" v-for="note in noteCollection" :key="note">
             <div class="heading">
                 <h1 class="header">{{ note.header }}</h1>
                 <span class="created-at">{{ note.created_at }}</span>
             </div>
-            <p class="content">{{ initialNoteCollection[note.id] }} ...<span> See More</span></p>
+            <p class="content" v-if="initialNoteCollection[note.id]">
+                {{ initialNoteCollection[note.id] }} <span v-if="initialNoteCollection[note.id].length === 200">
+                    ...
+                    See
+                    More</span></p>
             <div class="action-btns">
                 <!-- <img src="../assets/edit-button.svg" title="Edit" class="edit-btn">
                 <img src="../assets/delete-button.svg" title="Delete" class="delete-btn"> -->
@@ -32,34 +35,35 @@
 </template>
 
 <script>
-import { onMounted, ref } from 'vue'
+import addNote from '@/composables/addNote'
+import getNotes from '@/composables/getNotes'
+import { onMounted, onUpdated, ref } from 'vue'
 
 export default {
     setup() {
         const showModal = ref(false)
-        const noteCollection = ref([])
-        const initialNoteCollection = ref([])
+        let noteHeader = ref("")
+        let noteContent = ref("")
 
         function closeModal() {
             showModal.value = false
         }
 
-        onMounted(() => {
-            fetch('http://localhost:3000/note/')
-                .then(response => {
-                    return response.json()
-                })
-                .then(data => {
-                    noteCollection.value = data
+        //Add Note
+        const createNote = () => {
+            const { addData } = addNote()
+            addData(noteHeader.value, noteContent.value, closeModal)
+        }
 
-                    initialNoteCollection.value = noteCollection.value.map(note => note.content.substring(0, 200))
-                })
-                .catch(err => {
-                    console.log(err.message)
-                })
+        //Collect Note
+        const { noteCollection, initialNoteCollection, getData } = getNotes()
+        getData()
+
+        onUpdated(() => {
+            getData()
         })
 
-        return { showModal, noteCollection, initialNoteCollection, closeModal }
+        return { showModal, noteCollection, initialNoteCollection, noteHeader, noteContent, createNote, closeModal }
     }
 }
 </script>
@@ -186,80 +190,3 @@ textarea {
     background-color: wheat;
 }
 </style>
-
-<!-- <template>
-    <h1>Note</h1>
-
-    <button @click="showNoteCard = true"> + Create</button>
-
-    <div class="note-container" v-if="showNoteCard" @click="closeNoteCard">
-        <div class="note-create-card">
-            <h2>Create Note</h2>
-            <form>
-                <input type="text" placeholder="Header" v-bind="noteHeader">
-                <textarea v-bind="noteContent"></textarea>
-                <button>Add</button>
-            </form>
-        </div>
-    </div>
-</template>
-
-<script>
-import { ref } from 'vue';
-
-export default {
-    setup() {
-        let showNoteCard = ref(false)
-
-        let closeNoteCard = () => {
-            showNoteCard.value = false
-        }
-
-        return { showNoteCard, closeNoteCard }
-    }
-}
-</script>
-
-<style scoped>
-.note-container {
-    position: fixed;
-    width: 70%;
-    height: 100vh;
-    text-align: center;
-    margin: 0px auto;
-    z-index: 999;
-}
-
-.note-create-card {
-    z-index: 1000;
-}
-
-form {
-    margin: 10px auto;
-}
-
-input {
-    display: block;
-    margin: 15px auto;
-    padding: 10px;
-    width: 300px;
-    color: rgb(98, 85, 85);
-    outline: none;
-    border-radius: 10px;
-    border: none;
-    box-shadow: 3px 3px 3px rgb(123, 166, 197);
-}
-
-textarea {
-    display: block;
-    margin: 15px auto;
-    padding: 10px;
-    width: 300px;
-    height: 300px;
-    color: rgb(98, 85, 85);
-    outline: none;
-    border-radius: 10px;
-    border: none;
-    box-shadow: 3px 3px 3px rgb(123, 166, 197);
-}
-</style> -->
