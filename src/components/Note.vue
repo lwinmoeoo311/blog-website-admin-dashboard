@@ -13,21 +13,33 @@
         </div>
     </div>
     <div class="card-container">
-        <div class="card" v-for="note in noteCollection" :key="note">
+        <div class="card" v-for="note in noteCollection" :key="note.id">
             <div class="heading">
                 <h1 class="header">{{ note.header }}</h1>
                 <span class="created-at">{{ note.created_at }}</span>
             </div>
             <p class="content" v-if="initialNoteCollection[note.id]">
-                {{ initialNoteCollection[note.id] }} <span v-if="initialNoteCollection[note.id].length === 200">
+                {{ initialNoteCollection[note.id] }} <span @click="expandNote(note.content)"
+                    v-if="initialNoteCollection[note.id].length === 200">
                     ...
                     See
                     More</span></p>
             <div class="action-btns">
                 <!-- <img src="../assets/edit-button.svg" title="Edit" class="edit-btn">
                 <img src="../assets/delete-button.svg" title="Delete" class="delete-btn"> -->
-                <button class="edit-btn">Edit</button>
-                <button class="delete-btn">Delete</button>
+                <button class="edit-btn" @click="toEditNote">Edit</button>
+                <button class="delete-btn" @click="toDeleteNote(note.id)">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay" v-if="showMsgBox" @click="closeAlert">
+        <div class="modal" @click.stop>
+            <h1>Delete</h1>
+            <p>Are you sure you want to delete this note?</p>
+            <div class="delete-alert">
+                <button class="cancel-btn" @click="closeAlert">Cancel</button>
+                <button class="delete-btn" @click="deleteNote">Delete</button>
             </div>
         </div>
     </div>
@@ -35,18 +47,28 @@
 </template>
 
 <script>
+import ExpendNote from './ExpendNote'
 import addNote from '@/composables/addNote'
+import deleteItem from '@/composables/deleteNote'
 import getNotes from '@/composables/getNotes'
 import { onMounted, onUpdated, ref } from 'vue'
 
 export default {
+    components: { ExpendNote },
     setup() {
         const showModal = ref(false)
+        const showMsgBox = ref(false)
         let noteHeader = ref("")
         let noteContent = ref("")
+        let note = ref("")
+        let noteId = ""
 
         function closeModal() {
             showModal.value = false
+        }
+
+        function closeAlert() {
+            showMsgBox.value = false
         }
 
         //Add Note
@@ -55,15 +77,37 @@ export default {
             addData(noteHeader.value, noteContent.value, closeModal)
         }
 
-        //Collect Note
+        const expandNote = (content) => {
+            note.value = content
+        }
+
+        const toEditNote = () => {
+            console.log("Edit")
+        }
+
+        const toDeleteNote = (id) => {
+            showMsgBox.value = true
+            noteId = id
+        }
+
+        const deleteNote = () => {
+            const { getDataToDelete } = deleteItem()
+            getDataToDelete(noteId)
+            closeAlert()
+        }
+
         const { noteCollection, initialNoteCollection, getData } = getNotes()
-        getData()
+
+        //Collect Note
+        onMounted(() => {
+            getData()
+        })
 
         onUpdated(() => {
             getData()
         })
 
-        return { showModal, noteCollection, initialNoteCollection, noteHeader, noteContent, createNote, closeModal }
+        return { showModal, showMsgBox, noteCollection, initialNoteCollection, noteHeader, noteContent, note, createNote, expandNote, toEditNote, toDeleteNote, deleteNote, closeModal, closeAlert }
     }
 }
 </script>
@@ -82,7 +126,8 @@ export default {
     z-index: 999;
 }
 
-.modal {
+.modal,
+.delete-alert {
     background: antiquewhite;
     padding: 20px;
     border-radius: 8px;
@@ -153,6 +198,10 @@ textarea {
     width: 100%;
 }
 
+span {
+    text-decoration: none;
+}
+
 .action-btns {
     width: 100%;
     /* background-color: rgb(233, 233, 138); */
@@ -180,6 +229,20 @@ textarea {
     background-color: rgb(205, 18, 18);
     padding: 8px;
     cursor: pointer;
+}
+
+.cancel-btn {
+    width: 70px;
+    height: 30px;
+    background-color: rgb(181, 176, 176);
+    padding: 8px;
+    cursor: pointer;
+}
+
+.delete-alert {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .edit-btn:active {

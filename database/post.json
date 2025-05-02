@@ -49,18 +49,6 @@
       "header": "Note 4",
       "content": "Paragraph 5",
       "created_at": "2025/2/05"
-    },
-    {
-      "id": "1872",
-      "header": "Note 5",
-      "content": "Hello World!",
-      "created_at": "2025/05/02"
-    },
-    {
-      "id": "3d89",
-      "header": "Note 6",
-      "content": "Hola",
-      "created_at": "2025/05/02"
     }
   ]
 }
