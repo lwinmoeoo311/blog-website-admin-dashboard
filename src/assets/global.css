@@ -15,6 +15,10 @@ button {
     font-size: 15px;
 }
 
+button:hover {
+    cursor: pointer;
+}
+
 button:active {
     background-color: aliceblue;
     color: rgb(123, 166, 197);
