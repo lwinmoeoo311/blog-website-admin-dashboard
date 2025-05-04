@@ -8,8 +8,6 @@ const getDataToDelete = async (id: string) => {
     .then((response) => {
       if (response.ok) {
         console.log("Deleted");
-      } else {
-        console.error("Error");
       }
     })
     .catch((err) => {

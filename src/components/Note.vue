@@ -28,7 +28,7 @@
                 <div class="action-btns">
                     <!-- <img src="../assets/edit-button.svg" title="Edit" class="edit-btn">
                     <img src="../assets/delete-button.svg" title="Delete" class="delete-btn"> -->
-                    <button class="edit-btn" @click="toEditNote">Edit</button>
+                    <button class="edit-btn" @click="expandNote(note.id, true)">Edit</button>
                     <button class="delete-btn" @click="toDeleteNote(note.id)">Delete</button>
                 </div>
             </div>
@@ -46,7 +46,8 @@
         </div>
     </div>
 
-    <component :is="expandNoteComponent" :noteId="noteId" :isEditableNote="isEditableNote"></component>
+    <component :is="expandNoteComponent" :noteId="noteId" :isEditableNote="isEditableNote" @goBack="backToCard">
+    </component>
 
 </template>
 
@@ -59,7 +60,8 @@ import { onMounted, onUpdated, ref } from 'vue'
 
 export default {
     components: { ExpendNote },
-    setup() {
+
+    setup(props) {
         const cardCollection = ref(true)
         const showModal = ref(false)
         const showMsgBox = ref(false)
@@ -91,21 +93,21 @@ export default {
             expandNoteComponent.value = 'ExpendNote'
         }
 
-        //Edit Note
-        const toEditNote = () => {
-            console.log("Edit")
-        }
-
         //Delete Note
         const toDeleteNote = (id) => {
             showMsgBox.value = true
-            noteId = id
+            noteId.value = id
         }
 
         const deleteNote = () => {
             const { getDataToDelete } = deleteItem()
-            getDataToDelete(noteId)
+            getDataToDelete(noteId.value)
             closeAlert()
+        }
+
+        const backToCard = () => {
+            cardCollection.value = true
+            expandNoteComponent.value = null
         }
 
         //Collect Note
@@ -123,7 +125,7 @@ export default {
             }
         })
 
-        return { cardCollection, showModal, showMsgBox, noteCollection, initialNoteCollection, noteHeader, noteContent, noteId, isEditableNote, expandNoteComponent, createNote, expandNote, toEditNote, toDeleteNote, deleteNote, closeModal, closeAlert }
+        return { cardCollection, showModal, showMsgBox, noteCollection, initialNoteCollection, noteHeader, noteContent, noteId, isEditableNote, expandNoteComponent, createNote, expandNote, toDeleteNote, deleteNote, closeModal, closeAlert, backToCard }
     }
 }
 </script>
